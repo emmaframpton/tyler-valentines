@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+  <head>
+    <title>snowy landing</title>
+    <link rel="icon" href="favicon.png">
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        background: url('snowy.jpg') center/cover no-repeat fixed;
+        font-family: 'Courier New', monospace;
+        position: relative;
+        padding-top: 40px;
+      }
+
+      .bsod-window {
+        background: #0000aa;
+        color: #ffffff;
+        border: 4px solid #ffffff;
+        box-shadow: 6px 6px 0 #000000;
+        max-width: 760px;
+        width: 90%;
+        padding: 24px 28px;
+      }
+
+      .bsod-title {
+        display: inline-block;
+        background: #ffffff;
+        color: #0000aa;
+        padding: 2px 8px;
+        font-weight: bold;
+        margin-bottom: 16px;
+      }
+
+      .bsod-text {
+        font-size: 18px;
+        line-height: 1.6;
+      }
+
+      .snow-egg {
+        position: absolute;
+        left: 18%;
+        bottom: 18%;
+        width: 260px;
+        height: auto;
+      }
+
+      .snow-treeline {
+        position: absolute;
+        right: 12%;
+        bottom: 16%;
+        width: 720px;
+        height: auto;
+        animation: rainbowGlow 2s linear infinite;
+        filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.95))
+                drop-shadow(0 0 10px rgba(255, 128, 0, 0.95))
+                drop-shadow(0 0 10px rgba(255, 255, 0, 0.95))
+                drop-shadow(0 0 10px rgba(0, 255, 0, 0.95))
+                drop-shadow(0 0 10px rgba(0, 255, 255, 0.95))
+                drop-shadow(0 0 10px rgba(0, 0, 255, 0.95))
+                drop-shadow(0 0 10px rgba(128, 0, 255, 0.95))
+                drop-shadow(0 0 18px rgba(255, 0, 127, 0.7));
+      }
+
+      @keyframes rainbowGlow {
+        0% { 
+          filter: hue-rotate(0deg) saturate(180%) brightness(1.2)
+                  drop-shadow(0 0 10px rgba(255, 0, 0, 0.95))
+                  drop-shadow(0 0 10px rgba(255, 128, 0, 0.95))
+                  drop-shadow(0 0 10px rgba(255, 255, 0, 0.95))
+                  drop-shadow(0 0 10px rgba(0, 255, 0, 0.95))
+                  drop-shadow(0 0 10px rgba(0, 255, 255, 0.95))
+                  drop-shadow(0 0 10px rgba(0, 0, 255, 0.95))
+                  drop-shadow(0 0 10px rgba(128, 0, 255, 0.95))
+                  drop-shadow(0 0 18px rgba(255, 0, 127, 0.7));
+        }
+        100% { 
+          filter: hue-rotate(360deg) saturate(180%) brightness(1.2)
+                  drop-shadow(0 0 10px rgba(255, 0, 0, 0.95))
+                  drop-shadow(0 0 10px rgba(255, 128, 0, 0.95))
+                  drop-shadow(0 0 10px rgba(255, 255, 0, 0.95))
+                  drop-shadow(0 0 10px rgba(0, 255, 0, 0.95))
+                  drop-shadow(0 0 10px rgba(0, 255, 255, 0.95))
+                  drop-shadow(0 0 10px rgba(0, 0, 255, 0.95))
+                  drop-shadow(0 0 10px rgba(128, 0, 255, 0.95))
+                  drop-shadow(0 0 18px rgba(255, 0, 127, 0.7));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bsod-window">
+      <div class="bsod-title">Windows</div>
+      <div class="bsod-text">
+        uh oh that milk tasted.... wrong, your fart propelled you back onto earth and you luckily landed in a snowy bank on top of a mountain. do you cook an egg or explore the trees?
+      </div>
+    </div>
+    <audio src="snowballpark.mp3" controls autoplay style="position: fixed; left: 20px; top: 20px; z-index: 5;"></audio>
+    <a href="secret.html">
+      <img class="snow-egg" src="egg.png" alt="egg">
+    </a>
+    <a href="ski.html">
+      <img class="snow-treeline" src="treeline.png" alt="treeline">
+    </a>
+  </body>
+</html>

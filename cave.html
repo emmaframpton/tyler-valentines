@@ -1,0 +1,253 @@
+<!doctype html>
+<html>
+  <head>
+    <title>uh oh cave</title>
+    <link rel="icon" href="favicon.png">
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: url('cave.png') center/cover no-repeat;
+        color: #ffffff;
+        font-family: 'Comic Sans MS', cursive;
+        text-align: center;
+      }
+
+      .card {
+        background: #111133;
+        border: 3px solid #ffffff;
+        box-shadow: 6px 6px 0 #000000;
+        padding: 24px 28px;
+        max-width: 640px;
+      }
+
+      .title {
+        font-size: 28px;
+        margin-bottom: 12px;
+      }
+
+      .subtitle {
+        font-size: 18px;
+        line-height: 1.6;
+      }
+
+      .back-btn {
+        display: inline-block;
+        margin-top: 18px;
+        background: #ffffff;
+        color: #111133;
+        padding: 10px 16px;
+        text-decoration: none;
+        font-weight: bold;
+        border: 2px solid #ffffff;
+        box-shadow: 3px 3px 0 #000000;
+      }
+
+      .minecraft-text {
+        position: fixed;
+        top: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: 'Courier New', monospace;
+        font-size: 28px;
+        color: #ffffff;
+        text-shadow: 3px 3px 0 #000000;
+        font-weight: bold;
+        text-align: center;
+        z-index: 100;
+        animation: textBounce 1.5s ease-in-out infinite;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .minecraft-text.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      @keyframes textBounce {
+        0%, 100% { transform: translateX(-50%) translateY(0); }
+        50% { transform: translateX(-50%) translateY(-15px); }
+      }
+
+      .hoglin {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400px;
+        cursor: pointer;
+        z-index: 50;
+        transition: filter 0.3s ease;
+        animation: sway 3s ease-in-out infinite;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .hoglin.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .hoglin.erratic {
+        animation: erraticMove 2s ease-in-out infinite;
+      }
+
+      @keyframes sway {
+        0%, 100% { transform: translate(-50%, -50%) translateX(0); }
+        50% { transform: translate(-50%, -50%) translateX(30px); }
+      }
+
+      @keyframes erraticMove {
+        0% { transform: translate(-50%, -50%) translateX(0) translateY(0); }
+        20% { transform: translate(-30%, -40%) translateX(-80px) translateY(-50px); }
+        40% { transform: translate(-70%, -60%) translateX(60px) translateY(-30px); }
+        60% { transform: translate(-60%, -30%) translateX(-40px) translateY(60px); }
+        80% { transform: translate(-40%, -70%) translateX(90px) translateY(-70px); }
+        100% { transform: translate(-50%, -50%) translateX(0) translateY(0); }
+      }
+
+      .hoglin.hurt {
+        filter: hue-rotate(300deg) saturate(300%) brightness(1.2) contrast(1.5);
+        animation: spinAway 2s ease-out forwards;
+      }
+
+      @keyframes spinAway {
+        0% { transform: translate(-50%, -50%) rotate(0deg); }
+        50% { transform: translate(-50%, -50%) rotate(720deg); }
+        100% { transform: translate(-50%, -50%) rotate(720deg) translateY(-1000px); }
+      }
+
+      .click-counter {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        font-family: 'Courier New', monospace;
+        font-size: 24px;
+        color: #ffffff;
+        text-shadow: 2px 2px 0 #000000;
+        font-weight: bold;
+        z-index: 100;
+      }
+
+      .escape-arrow {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 300px;
+        height: auto;
+        cursor: pointer;
+        z-index: 60;
+        display: none;
+        animation: bounce 1s ease-in-out infinite;
+      }
+
+      @keyframes bounce {
+        0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+        50% { transform: translate(-50%, -50%) translateY(-20px); }
+      }
+
+      .skip-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #ffffff;
+        color: #000000;
+        padding: 8px 16px;
+        text-decoration: none;
+        font-size: 16px;
+        font-family: 'Courier New', monospace;
+        border: 2px solid #000000;
+        font-weight: bold;
+        box-shadow: 2px 2px 0 #000000;
+        z-index: 100;
+      }
+
+      .skip-btn:hover {
+        background: #cccccc;
+      }
+    </style>
+  </head>
+  <body>
+    <audio id="caveAudio" src="symphdyingstar.mp3" loop></audio>
+    <audio id="hoglinAudio" src="hogmad.mp3"></audio>
+    <audio id="hurtAudio" src="hoglinhurt.mp3"></audio>
+    
+    <div class="minecraft-text">killer hoglin!! hit them to escape the cave</div>
+    <img id="hoglin" class="hoglin" src="hog.png" alt="hoglin">
+    <div class="click-counter">Hits: <span id="counter">0</span>/50</div>
+    <a href="wii.html" id="escapeArrow" class="escape-arrow">
+      <img src="freedom.gif" style="width: 100%; height: auto;" alt="escape">
+    </a>
+    <a href="wii.html" class="skip-btn">Skip</a>
+    
+    <script>
+      const audio = document.getElementById('caveAudio');
+      const hoglin = document.getElementById('hoglinAudio');
+      const hurtAudio = document.getElementById('hurtAudio');
+      const hoglinImg = document.getElementById('hoglin');
+      const counter = document.getElementById('counter');
+      const escapeArrow = document.getElementById('escapeArrow');
+      const minecraftText = document.querySelector('.minecraft-text');
+      let clickCount = 0;
+      
+      audio.volume = 1.0;
+      hoglin.volume = 1.0;
+      hurtAudio.volume = 1.0;
+      audio.currentTime = 84; // Start at 1:24
+      
+      // Show hoglin, text, and play sound after 5 seconds
+      setTimeout(() => {
+        hoglinImg.classList.add('visible');
+        minecraftText.classList.add('visible');
+        hoglin.play().catch(() => {
+          const playOnce = () => {
+            hoglin.play().catch(e => console.log('Hoglin play failed:', e));
+          };
+          document.addEventListener('click', playOnce, { once: true });
+          document.addEventListener('keydown', playOnce, { once: true });
+        });
+      }, 5000);
+
+      // Make hoglin move erratically after 10 seconds
+      setTimeout(() => {
+        hoglinImg.classList.add('erratic');
+      }, 10000);
+      
+      audio.play().catch(() => {
+        // Play on first interaction
+        const playOnce = () => {
+          audio.currentTime = 84;
+          audio.play().catch(e => console.log('Audio play failed:', e));
+        };
+        document.addEventListener('click', playOnce, { once: true });
+        document.addEventListener('keydown', playOnce, { once: true });
+      });
+      
+      // Hoglin click handler
+      hoglinImg.addEventListener('click', function() {
+        if (clickCount < 50) {
+          clickCount++;
+          counter.textContent = clickCount;
+          
+          if (clickCount === 50) {
+            // Hoglin defeated
+            hoglinImg.classList.add('hurt');
+            hurtAudio.play().catch(e => console.log('Hurt audio failed:', e));
+            
+            // Show arrow after animation
+            setTimeout(() => {
+              hoglinImg.style.display = 'none';
+              escapeArrow.style.display = 'block';
+            }, 2000);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

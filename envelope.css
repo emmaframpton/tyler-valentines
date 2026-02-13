@@ -1,0 +1,211 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #eaaff6 0%, #f62323 100%);
+    font-family: Arial, sans-serif;
+}
+
+.envelope-wrapper {
+    text-align: center;
+}
+
+/* Envelope image hover effects */
+#envelope {
+    transition: transform 0.3s ease, filter 0.3s ease;
+    will-change: transform;
+    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.8));
+    animation: envelopeFloat 1.6s ease-in-out infinite;
+}
+
+.envelope {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.envelope:hover {
+    transform: scale(1.05);
+}
+
+/* Main envelope body - rectangle */
+.body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 180px;
+    background: #f4e4c1;
+    border: 2px solid #d4a574;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Back flap triangles */
+.body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 150px solid #e6d4a8;
+    border-right: 150px solid transparent;
+    border-top: 90px solid transparent;
+}
+
+.body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-right: 150px solid #e6d4a8;
+    border-left: 150px solid transparent;
+    border-top: 90px solid transparent;
+}
+
+/* Top flap */
+.flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 100px solid #d4a574;
+    transform-origin: bottom center;
+    transition: transform 0.6s ease;
+    z-index: 15;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.envelope.open .flap {
+    transform: rotateX(180deg);
+}
+
+/* Front flap closure */
+/* flap::before removed as per the suggestion */
+
+.heart {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 60px;
+    opacity: 1;
+    transition: all 0.8s ease;
+    z-index: 20;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.envelope.open .heart {
+    top: -40px;
+    font-size: 90px;
+    animation: heartFloat 1s ease-out;
+    z-index: 20;
+}
+
+@keyframes heartFloat {
+    0% { transform: translateX(-50%) translateY(0) scale(1); }
+    50% { transform: translateX(-50%) translateY(-20px) scale(1.1); }
+    100% { transform: translateX(-50%) translateY(0) scale(1); }
+}
+
+.instruction {
+    margin-top: 30px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+@keyframes envelopeFloat {
+    0% { transform: translateY(0) scale(1.02); }
+    50% { transform: translateY(-8px) scale(1.04); }
+    100% { transform: translateY(0) scale(1.02); }
+}
+
+.envelope.open ~ .instruction {
+    opacity: 0;
+}
+@keyframes milkMadness {
+    0% {
+        width: 0px;
+        height: 0px;
+        opacity: 0;
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    30% {
+        width: 400px;
+        height: 400px;
+        opacity: 1;
+        transform: translate(-50%, -50%) rotate(720deg);
+    }
+    100% {
+        width: 400px;
+        height: 400px;
+        opacity: 0;
+        transform: translate(-50%, -200%) rotate(1440deg) scale(2);
+    }
+}
+
+@keyframes slideText {
+    0% {
+        left: -100%;
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        left: 100%;
+        opacity: 0;
+    }
+}
+
+@keyframes gassySlide {
+    0% {
+        left: -100%;
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        left: 100%;
+        opacity: 0;
+    }
+}
+
+@keyframes bowserRise {
+    0% {
+        bottom: -500px;
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        bottom: 10%;
+        opacity: 1;
+    }
+}

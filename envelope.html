@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>important message</title>
+    <link rel="stylesheet" href="envelope.css">
+    <link rel="icon" href="favicon.png">
+</head>
+<body style="background: url('space.png') center/cover no-repeat fixed; margin: 0; padding: 0;">
+    <div class="envelope-wrapper">
+        <img src="envelope.png" id="envelope" style="cursor: pointer; width: 300px; height: auto;">
+        <p class="instruction">Click the envelope!</p>
+    </div>
+    
+    <!-- Flying Milk Animation -->
+    <img src="milk.png" id="flyingMilk" style="
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 0px;
+        height: 0px;
+        z-index: 9999;
+        opacity: 0;
+        pointer-events: none;
+    ">
+    
+    <!-- Milk Text -->
+    <div id="milkText" style="
+        position: fixed;
+        top: 20%;
+        left: -100%;
+        font-family: 'Comic Sans MS', cursive;
+        font-size: 80px;
+        color: #ffffff;
+        text-shadow: 4px 4px 8px #000000;
+        z-index: 10000;
+        white-space: nowrap;
+        font-weight: bold;
+        pointer-events: none;
+    ">mmmmmm milk</div>
+
+    <!-- Gassy Text -->
+    <div id="gassyText" style="
+        position: fixed;
+        top: 15%;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: 'Comic Sans MS', cursive;
+        font-size: 48px;
+        color: #ffff00;
+        text-shadow: 4px 4px 8px #000000;
+        z-index: 10002;
+        white-space: nowrap;
+        font-weight: bold;
+        pointer-events: none;
+        opacity: 0;
+    ">oh no i feeel..... GASSY</div>
+    
+    <!-- Bowser Video -->
+    <video id="bowserGif" style="
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400px;
+        height: 600px;
+        z-index: 10001;
+        opacity: 0;
+        pointer-events: none;
+    " muted loop>
+        <source src="bowser.mp4" type="video/mp4">
+    </video>
+    
+    <audio id="ashtwinAudio" src="ashtwin.mp3" autoplay loop></audio>
+    
+    <script src="envelope.js"></script>
+</body>
+</html>

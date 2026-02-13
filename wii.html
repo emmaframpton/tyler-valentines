@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+  <head>
+    <title>valentines</title>
+    <link rel="icon" href="favicon.png">
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: url('wii.png') center/cover no-repeat;
+        color: #ffffff;
+        font-family: 'Comic Sans MS', cursive;
+        text-align: center;
+        position: relative;
+      }
+
+      .floating-text {
+        font-size: 72px;
+        font-weight: bold;
+        color: #ff1493;
+        -webkit-text-stroke: 2px #990033;
+        text-shadow: 
+          0 0 20px #ff1493,
+          0 0 40px #ff1493,
+          0 0 60px #ff0080,
+          0 0 80px #ff0080,
+          0 0 100px #ff0080,
+          5px 5px 15px rgba(0,0,0,0.9);
+        animation: float 3s ease-in-out infinite, glow 2s ease-in-out infinite alternate;
+        position: absolute;
+        top: 60px;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+      }
+
+      .valentine-text {
+        font-size: 32px;
+        font-weight: bold;
+        color: #ff1493;
+        -webkit-text-stroke: 1px #990033;
+        text-shadow: 
+          0 0 10px #ff1493,
+          0 0 20px #ff1493,
+          3px 3px 8px rgba(0,0,0,0.9);
+        position: absolute;
+        top: 150px;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        animation: float 3s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%, 100% { transform: translateX(-50%) translateY(0px); }
+        50% { transform: translateX(-50%) translateY(-20px); }
+      }
+
+      @keyframes glow {
+        from {
+          text-shadow: 
+            0 0 20px #ff1493,
+            0 0 40px #ff1493,
+            0 0 60px #ff0080,
+            0 0 80px #ff0080,
+            0 0 100px #ff0080,
+            5px 5px 15px rgba(0,0,0,0.9);
+        }
+        to {
+          text-shadow: 
+            0 0 30px #ff1493,
+            0 0 60px #ff1493,
+            0 0 90px #ff0080,
+            0 0 120px #ff0080,
+            0 0 150px #ff0080,
+            5px 5px 15px rgba(0,0,0,0.9);
+        }
+      }
+
+      .card {
+        background: #ffffff;
+        border: 3px solid #000000;
+        box-shadow: 6px 6px 0 #333333;
+        padding: 24px 28px;
+        max-width: 640px;
+        color: #000000;
+      }
+
+      .title {
+        font-size: 28px;
+        margin-bottom: 12px;
+      }
+
+      .subtitle {
+        font-size: 18px;
+        line-height: 1.6;
+      }
+
+      .back-btn {
+        display: inline-block;
+        margin-top: 18px;
+        background: #0066cc;
+        color: #ffffff;
+        padding: 10px 16px;
+        text-decoration: none;
+        font-weight: bold;
+        border: 2px solid #000000;
+        box-shadow: 3px 3px 0 #333333;
+      }
+    </style>
+  </head>
+  <body>
+    <audio src="zombiesonyourlawn.mp3" autoplay loop></audio>
+    <div class="floating-text">1 billion percent awesome together</div>
+    <div class="valentine-text">happy valentines day</div>
+  </body>
+</html>
